@@ -1,0 +1,49 @@
+//  Calculating Pi
+//
+//  Created by David Martinez on 2/6/16.
+//  Copyright © 2016 Joenteny David Martinez Gutierrez. All rights reserved.
+//
+//  Description:
+//  Calculates Pi using the the Leibniz formula and then gives you error between real value of Pi and calculated value of Pi
+
+#define _USE_MATH_DEFINES
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
+using namespace std;
+
+double calculatePi(double numIterations); // Prototype for the calculatePi function
+
+int main()
+{
+    double numIterations;   // numIterations is a type of double
+    
+    // do while loop that asks user to enter number of iterations done while using input validation
+    do
+    {
+        cout << "Enter a number for the number of iterations done to calculate Pi (non-negative): ";
+        cin >> numIterations;
+    }while(numIterations < 0);
+    
+    double calculatedNum = calculatePi(numIterations);  // Calls function calculatePi and sets value equal to calculatedNum
+    
+    // Displays calculated number and error
+    cout << "The calculated value of Pi is " << fixed << setprecision(15) << calculatedNum << endl;
+    cout << "The error between the value of pi and the calculated value is: " << abs(M_PI - calculatedNum) << endl;
+    
+    return 0;
+}   // End of function main ()
+
+double calculatePi(double numIterations)
+{
+    double calculatedNum = 0;   // calculatedNum is a type of double
+    
+    // for loop that calculates pi using the Leibniz formula
+    for(double i = 0; i <= numIterations; i++)
+    {
+        calculatedNum += 4 * (pow(-1, i)/((2 * i) + 1));
+    }
+    
+    return calculatedNum;
+}   // End of function calculatePi ()
